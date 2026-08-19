@@ -7,8 +7,29 @@ import medicaltorch as mt
 here = path.abspath(path.dirname(__file__))
 
 with open('requirements.txt') as f:
+    requirements = f.read().splitlines()
 
 with open('test-requirements.txt') as f:
+    test_requirements = f.read().splitlines()
 
 setup(
+    name="medical-imaging-pytorch",
+    version=mt.__version__,
+    description='An open-source pytorch medical framework.',
+    url="https://github.com/AvicenaIG/medical-imaging-pytorch",
+    author="AvicenaIG",
+    author_email="avi.cena.ghifarie@gmail.com",
+    classifiers=[
+        'Development Status :: 3 - Alpha',
+        'Intended Audience :: Developers',
+        'Programming Language :: Python :: 3',
+    ],
+    packages=find_packages(exclude=['contrib', 'docs', 'tests']),
+    install_requires=requirements,
+    tests_require=test_requirements,
+    #entry_points={
+        #'console_scripts': [
+        #    'cmdname=medicaltorch.mod:function',
+        #],
+    #},
 )
