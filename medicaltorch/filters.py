@@ -2,9 +2,20 @@ import numpy as np
 
 
 class SliceFilter(object):
-    pass  # TODO: implement
     def __init__(self, filter_empty_mask=True,
-        pass  # TODO: implement
+                 filter_empty_input=True):
+        self.filter_empty_mask = filter_empty_mask
+        self.filter_empty_input = filter_empty_input
 
     def __call__(self, sample):
-        pass  # TODO: implement
+        input_data, gt_data = sample['input'], sample['gt']
+        
+        if self.filter_empty_mask:
+            if not np.any(gt_data):
+                return False
+        
+        if self.filter_empty_input:
+            if not np.any(input_data):
+                return False
+        
+        return True
